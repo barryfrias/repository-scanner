@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: apiscanner
+
+app:
+  repository:
+    id: 1NEnEWFaRGt27xwlg8Fy2W_blwQyRXQg0
