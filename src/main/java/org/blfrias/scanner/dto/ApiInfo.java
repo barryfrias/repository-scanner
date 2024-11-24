@@ -1,4 +1,4 @@
-package org.blfrias.apiscanner.dto;
+package org.blfrias.scanner.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,9 +1,9 @@
-package org.blfrias.apiscanner.rest;
+package org.blfrias.scanner.rest;
 
 import com.google.common.collect.ImmutableMap;
 import lombok.RequiredArgsConstructor;
-import org.blfrias.apiscanner.dto.ApiInfo;
-import org.blfrias.apiscanner.service.FileService;
+import org.blfrias.scanner.dto.ApiInfo;
+import org.blfrias.scanner.service.ScannerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/scan")
 public class MainController {
-    private final FileService fileService;
+    private final ScannerService scannerService;
 
     @PostMapping({"/repository"})
     public ResponseEntity<Map<String, String>> scanRepository() {
-        fileService.scanRepository();
+        scannerService.scanRepository();
         return ResponseEntity.ok(ImmutableMap.of("message", "Scanning done."));
     }
 
     @GetMapping({"/results/repository"})
-    public ResponseEntity<List<ApiInfo>> showResults(
-        @RequestParam(name="httpMethod", required = false) String httpMethod,
-        @RequestParam(name="path", required = false) String path
+    public ResponseEntity<Set<ApiInfo>> showResults(
+        final @RequestParam(name="httpMethod", required = false) String httpMethod,
+        final @RequestParam(name="path", required = false) String path
     ) {
-        var apiInfos = fileService.getApiInfos(httpMethod, path);
+        var apiInfos = scannerService.getApiInfos(httpMethod, path);
         return ResponseEntity.ok(apiInfos);
     }
 }

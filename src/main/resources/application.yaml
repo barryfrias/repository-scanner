@@ -1,6 +1,6 @@
 spring:
   application:
-    name: apiscanner
+    name: repository-scanner
 
 app:
   repository:

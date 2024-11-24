@@ -1,4 +1,4 @@
-package org.blfrias.apiscanner;
+package org.blfrias.scanner;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
